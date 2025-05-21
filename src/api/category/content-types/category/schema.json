@@ -16,16 +16,13 @@
       "type": "string"
     },
     "slug": {
-      "type": "uid"
+      "type": "string",
+      "unique": true
     },
-    "articles": {
+    "courses": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "category"
-    },
-    "description": {
-      "type": "text"
+      "target": "api::course.course"
     }
   }
 }

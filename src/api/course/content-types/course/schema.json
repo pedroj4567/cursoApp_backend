@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "singularName": "course",
+    "pluralName": "courses",
+    "displayName": "Course",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "totalHours": {
+      "type": "integer"
+    },
+    "profesor": {
+      "type": "string"
+    },
+    "published": {
+      "type": "boolean",
+      "default": false
+    },
+    "chapters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::chapter.chapter",
+      "mappedBy": "course"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "users_permissions_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
+    },
+    "numberChapters": {
+      "type": "integer",
+      "default": 0
+    },
+    "lessons": {
+      "type": "integer",
+      "default": 0
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "courses"
+    },
+    "quizzes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::quiz.quiz",
+      "mappedBy": "course"
+    }
+  }
+}
