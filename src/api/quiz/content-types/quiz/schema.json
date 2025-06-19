@@ -11,9 +11,6 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "title": {
-      "type": "string"
-    },
     "question": {
       "type": "string"
     },
@@ -22,6 +19,10 @@
       "relation": "manyToOne",
       "target": "api::course.course",
       "inversedBy": "quizzes"
+    },
+    "aprobado": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

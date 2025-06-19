@@ -554,6 +554,7 @@ export interface ApiQuizQuiz extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    aprobado: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     course: Schema.Attribute.Relation<'manyToOne', 'api::course.course'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -563,7 +564,6 @@ export interface ApiQuizQuiz extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     question: Schema.Attribute.String;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1054,6 +1054,7 @@ export interface PluginUsersPermissionsUser
       }>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    quizzes: Schema.Attribute.Relation<'oneToMany', 'api::quiz.quiz'>;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',

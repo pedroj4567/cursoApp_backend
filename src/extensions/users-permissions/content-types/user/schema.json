@@ -78,6 +78,11 @@
       "relation": "oneToMany",
       "target": "api::course.course",
       "mappedBy": "user"
+    },
+    "quizzes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::quiz.quiz"
     }
   }
 }
