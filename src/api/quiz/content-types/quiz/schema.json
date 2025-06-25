@@ -23,6 +23,9 @@
     "aprobado": {
       "type": "boolean",
       "default": false
+    },
+    "value": {
+      "type": "string"
     }
   }
 }
