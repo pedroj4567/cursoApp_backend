@@ -463,6 +463,41 @@ export interface ApiChapterChapter extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCourseSeeLaterCourseSeeLater
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'course_see_laters';
+  info: {
+    description: '';
+    displayName: 'course_see_later';
+    pluralName: 'course-see-laters';
+    singularName: 'course-see-later';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    courses: Schema.Attribute.Relation<'oneToMany', 'api::course.course'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    curso: Schema.Attribute.String;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::course-see-later.course-see-later'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
   collectionName: 'courses';
   info: {
@@ -499,8 +534,8 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<
-      'manyToOne',
+    users: Schema.Attribute.Relation<
+      'manyToMany',
       'plugin::users-permissions.user'
     >;
     users_permissions_users: Schema.Attribute.Relation<
@@ -1031,7 +1066,11 @@ export interface PluginUsersPermissionsUser
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    courses: Schema.Attribute.Relation<'oneToMany', 'api::course.course'>;
+    course_see_laters: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::course-see-later.course-see-later'
+    >;
+    courses: Schema.Attribute.Relation<'manyToMany', 'api::course.course'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1086,6 +1125,7 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::category.category': ApiCategoryCategory;
       'api::chapter.chapter': ApiChapterChapter;
+      'api::course-see-later.course-see-later': ApiCourseSeeLaterCourseSeeLater;
       'api::course.course': ApiCourseCourse;
       'api::global.global': ApiGlobalGlobal;
       'api::quiz.quiz': ApiQuizQuiz;

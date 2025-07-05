@@ -73,16 +73,21 @@
       "type": "string",
       "required": true
     },
-    "courses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::course.course",
-      "mappedBy": "user"
-    },
     "quizzes": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::quiz.quiz"
+    },
+    "course_see_laters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course-see-later.course-see-later"
+    },
+    "courses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::course.course",
+      "mappedBy": "users"
     }
   }
 }

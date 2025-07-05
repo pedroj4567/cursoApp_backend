@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "course_see_laters",
+  "info": {
+    "singularName": "course-see-later",
+    "pluralName": "course-see-laters",
+    "displayName": "course_see_later",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "curso": {
+      "type": "string"
+    },
+    "courses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course.course"
+    }
+  }
+}
